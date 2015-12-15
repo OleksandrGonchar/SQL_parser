@@ -22,10 +22,9 @@ define([
                 return new Pattern( function(str, pos) {
                     pos = pos || 0;
                     var res = rgx.exec(str.slice(pos));
-
                     if( res && res.index === 0) {
                         return {
-                            res: +res[0],
+                            res: res[0],
                             end: pos + res[0].length
                         }
                     }
@@ -70,7 +69,6 @@ define([
                     var responce = [],
                         end = pos,
                         r = pattern.exec(str, end);
-
                     while (r && r.end > end) {
                         responce.push(r.res.toString());
                         end = r.end;

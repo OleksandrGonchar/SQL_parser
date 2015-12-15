@@ -39,14 +39,14 @@ define([
 
             it('Should be fined in string', function () {
                 expect(Patterns.rgx(/\d+/).exec('12324njnkmk', 0)).toEqual({
-                    res: 12324,
+                    res: "12324",
                     end: 5
                 });
             });
 
             it('Should be fined in string', function () {
                 expect(Patterns.rgx(/\d+/).exec('jnkmk 12324', 6)).toEqual({
-                    res: 12324,
+                    res: "12324",
                     end: 11
                 });
             });
@@ -124,7 +124,7 @@ define([
             });
 
             it('Should return array of result', function () {
-                expect(patternArray.exec("9,23,456", 0)).toEqual({
+                expect(patternArray.exec("9,23,456 fdf", 0)).toEqual({
                     res: ["9", "23", "456"],
                     end: 8
                 });
