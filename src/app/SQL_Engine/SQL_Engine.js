@@ -5,25 +5,36 @@ define([
 
         var selectOperation = "select ",
             deleteOperation = "delete ",
+            innerJoinOperation = "inner join ",
             fromOperation = "from ",
-            parseOperation = Patterns.opt(Patterns.txt(selectOperation)),
+            parseOperation = Patterns.any([Patterns.txt(selectOperation),
+                Patterns.txt(innerJoinOperation),
+                Patterns.txt(deleteOperation)]),
             comseparator = Patterns.rgx(new RegExp( "\\s\?\[,\]\\s\?")),
-            targetField = Patterns.rep(Patterns.rgx(/\w+/), comseparator),
+            targetField = Patterns.any([ Patterns.txt("*"), Patterns.rep(Patterns.rgx(/\w+/), comseparator)]),
             targetTable = Patterns.rep(Patterns.rgx(/\w+/), comseparator),
             whitespecesibbol = Patterns.rgx(/\s+?/);
-
     return function (string) {
         var whitespace, end, field, operation, from, table,
         whereOptional = {};
-        operation =  parseOperation.exec(string, 0);
-        end = operation.end;
-        if(!end) {
-            operation =  parseOperation.exec(string, 0);
-            end = operation.end;
+
+        function endSetter(num){
+            return end = num;
         }
-        console.log(end);
-        field = targetField.exec(string, end);
-        end = field.end;
+        function operationFounder() {
+            operation = parseOperation.exec(string, 0);
+            endSetter(operation.end);
+        }
+        function fieldFounder() {
+            field = targetField.exec(string, end);
+            if(typeof field.res !== 'object') {
+                field.res = [field.res];
+            }
+            endSetter(field.end);
+        }
+
+        operationFounder();
+        fieldFounder();
         whitespace = whitespecesibbol.exec(string, end);
         end = whitespace.end;
         from = Patterns.txt(fromOperation).exec( string, end);
@@ -42,8 +53,3 @@ define([
         };
     }
 });
-/*
-* Expected Object({ operation: 'select ', targetField: [ 'product_id1', 'product_id2' ], targetTable: [ 'm_income' ], where: Object({  }) })
-* to equal Object({ operation: 'select', targetField: [ 'product_id1', 'product_id2' ], targetTable: [ 'm_income' ], where: Object({  }) }).
-*
-* */

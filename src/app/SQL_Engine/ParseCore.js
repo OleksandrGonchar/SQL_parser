@@ -9,7 +9,7 @@ define([
                 return new Pattern( function(str, pos) {
                     pos = pos || 0;
                     var newPos = text.length + pos;
-                    if(str.substring(pos, text.length + pos) === text) {
+                    if(str.substring(pos, newPos) === text) {
                         return {
                             res: text,
                             end: newPos
