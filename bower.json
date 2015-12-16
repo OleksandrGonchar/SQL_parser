@@ -1,0 +1,14 @@
+{
+  "name": "SQL_parser",
+  "private": false,
+  "dependencies": {
+    "lodash": "~3.10.1",
+    "requirejs": "~2.1.22"
+  },
+  "overrides": {
+    "bootstrap-sass": {
+      "main": []
+    }
+  },
+  "devDependencies": {}
+}
