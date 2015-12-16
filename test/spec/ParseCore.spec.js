@@ -137,7 +137,7 @@ define([
                 });
             });
 
-            it('Should be return 123', function () {
+            it('Should be return object with empty "res" and default "end"', function () {
                 expect(patternArray.exec("ABC", 0)).toEqual({
                     res: [],
                     end: 0
