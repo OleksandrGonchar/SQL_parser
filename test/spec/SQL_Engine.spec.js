@@ -55,11 +55,11 @@ define([
                 innerjoin: {
                     table1: {
                     name: "m_income",
-                    field: ''
+                    field: 'id'
                 },
                     table2: {
                         name: 'm_product',
-                        field: ''
+                        field: 'id'
                     },
                     criterion: ''},
                 where: {}

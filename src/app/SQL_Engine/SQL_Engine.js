@@ -12,9 +12,9 @@ define([
                 Patterns.txt(deleteOperation)]),
             optionalInnerJoin = Patterns.opt(Patterns.txt(innerJoinOperation)),
             comseparator = Patterns.rgx(new RegExp( "\\s\?\[,\]\\s\?")),
-            targetField = Patterns.any([ Patterns.txt("*"), Patterns.rep(Patterns.rgx(allWords), comseparator)]),
+            targetField = Patterns.any([ Patterns.txt("*"), Patterns.rep(Patterns.rgx(allWords), comseparator) ]),
             targetTable = Patterns.rep(Patterns.rgx(allWords), comseparator),
-            whitespecesibbol = Patterns.rgx(/\s+?/);
+            whitespecesibbol = Patterns.opt(Patterns.rgx(/\s+?/));
     return function (string) {
         var whitespace, field, operation, from, innerjoin,
             table = {},
@@ -56,6 +56,16 @@ define([
             endSetter(table.end);
             return table.res;
         }
+        function fieldFinder(tableName) {
+            var fieldNameValue;
+            //console.log(whitespaceFounder());
+
+            fieldNameValue = targetField.exec(string, end);
+            console.log(fieldNameValue === tableName);
+            console.log(tableName, fieldNameValue);
+            console.log(string.slice(end));
+            return 'id';
+        }
         function innerJoinFounder() {
             var secondTAble = {};
             innerjoin = optionalInnerJoin.exec(string, end);
@@ -64,17 +74,17 @@ define([
                 innerResult = {
                     table1: {
                         name: table.res[0],
-                        field: ''
+                        field: fieldFinder(innerResult)
                     },
                     table2: {
                         name: targetTableFounder(secondTAble)[0],
-                        field: ''
+                        field: fieldFinder(innerResult)
                     },
                     criterion: ''
                 };
             }
         }
-
+        if (innerResult.table1)console.log(innerResult.table1.name, '\n');
         operationFounder();
         fieldFounder();
         whitespaceFounder();
