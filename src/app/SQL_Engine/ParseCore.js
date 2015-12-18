@@ -70,7 +70,7 @@ define([
                         end = pos,
                         r = pattern.exec(str, end);
                     while (r && r.end > end) {
-                        responce.push(r.res.toString());
+                        responce.push(r.res.toString().trim());
                         end = r.end;
                         r = separator.exec(str, end);
                         if(r) {

@@ -4,68 +4,59 @@ define([
     "use strict";
 
     describe('SQL Engine', function() {
-        var targetString1 = 'delete product_id1 , product_id2 from m_income1, m_income2',
-            targetString2 = 'select * from m_income1, m_income2',
-            targetString3 = 'delete * from m_income1,m_income2,m_income3';
+        var targetString1 = ' delete produ.ct_id1,product_id2.field, product_id3 from m_income1 inner join m_income2 ',
+            targetString2 = 'select *.kk from m_income1  ',
+            targetString3 = 'select users.firstName, posts.text from posts join users on posts.userid = users.id where users.id2  <= 2';
 
         it('Should be defined', function() {
             expect(SELECT).toBeDefined();
         });
 
-        it('Should find command SELECT and selected parameters on selected tables', function() {
+        it('Should return "delete product_id1 , product_id2 from"', function () {
             expect(SELECT(targetString1)).toEqual({
-                operation: "delete",
-                targetField: ["product_id1", "product_id2"],
-                targetTable: ["m_income1", "m_income2"],
-                innerjoin: {},
+                operation: 'delete',
+                targetField: ['produ.ct_id1','product_id2.field','product_id3'],
+                targetTable: 'm_income1',
+                innerjoin: 'inner join',
+                joibedTable: 'm_income2',
                 where: {}
             });
         });
 
-        it('Should return query for all field from table', function () {
+        it('Should return "delete product_id1 , product_id2 from"', function () {
             expect(SELECT(targetString2)).toEqual({
-                operation: "select",
-                targetField: ["*"],
-                targetTable: ["m_income1", "m_income2"],
-                innerjoin: {},
+                operation: 'select',
+                targetField: ['*.kk'],
+                targetTable: 'm_income1',
+                innerjoin: null,
+                joibedTable: null,
                 where: {}
             });
         });
 
-        it('Should return query for all field from table', function () {
+        it('Should parse join result', function () {
             expect(SELECT(targetString3)).toEqual({
-                operation: "delete",
-                targetField: ["*"],
-                targetTable: ["m_income1", "m_income2", "m_income3"],
-                innerjoin: {},
-                where: {}
-            });
-        });
-    });
-
-    describe('Inner JOIN', function () {
-        var targetString1 = "select dt, product_id, title, amount, price " +
-            "from m_income inner join m_product where m_income.product_id=m_product.id";
-
-        it('Should can parse inner join select', function () {
-            expect(SELECT(targetString1)).toEqual({
-                operation: "select",
-                targetField: ['dt', 'product_id', 'title', 'amount', 'price'],
-                targetTable: ["m_income"],
-                innerjoin: {
-                    table1: {
-                    name: "m_income",
-                    field: 'id'
-                },
-                    table2: {
-                        name: 'm_product',
-                        field: 'id'
+                operation: 'select',
+                targetField: ['users.firstName', 'posts.text'],
+                targetTable: 'posts',
+                innerjoin: 'join',
+                joibedTable: 'users',
+                where: {
+                    firstRule: {
+                        method: 'on',
+                        sign: '=',
+                        firstJoinField: 'posts.userid',
+                        secondJoinField: 'users.id'
                     },
-                    criterion: ''},
-                where: {}
+                    secondRule: {
+                        method: 'where',
+                        sign: '<=',
+                        firstJoinField: 'users.id2',
+                        secondJoinField: '2'
+                    }
+                }
             });
         });
     });
 
 });
-
