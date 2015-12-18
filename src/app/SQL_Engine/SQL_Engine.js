@@ -53,7 +53,7 @@ define([
                                 where.firstRule.firstJoinField = firstJoinField.res.trim();
 
                                 /*
-                                * second rule... if found....
+                                * second rule... if found.... and this is duplicate
                                 * */
                                 if(secondJoinField) {
                                     secondJoinCriterial = Patterns.rgx(/[\s]*(where|on)[\s]*/).exec(string, secondJoinField.end);
