@@ -13,24 +13,35 @@ define([
         });
 
         it('Should return "delete product_id1 , product_id2 from"', function () {
-            expect(SELECT(targetString1)).toEqual({
-                operation: 'delete',
-                targetField: ['produ.ct_id1','product_id2.field','product_id3'],
-                targetTable: 'm_income1',
-                innerjoin: 'inner join',
-                joibedTable: 'm_income2',
-                where: {}
-            });
-        });
-
-        it('Should return "delete product_id1 , product_id2 from"', function () {
             expect(SELECT(targetString2)).toEqual({
                 operation: 'select',
                 targetField: ['*.kk'],
                 targetTable: 'm_income1',
                 innerjoin: null,
                 joibedTable: null,
-                where: {}
+                where: []
+            });
+        });
+
+        xit('qq', function () {
+            expect(SELECT('select * from topics where id_author>=2')).toEqual({
+                operation: 'select',
+                targetField: ['*.kk'],
+                targetTable: 'm_income1',
+                innerjoin: null,
+                joibedTable: null,
+                where: []
+            });
+        });
+
+        it('Should return "delete product_id1 , product_id2 from"', function () {
+            expect(SELECT(targetString1)).toEqual({
+                operation: 'delete',
+                targetField: ['produ.ct_id1','product_id2.field','product_id3'],
+                targetTable: 'm_income1',
+                innerjoin: 'inner join',
+                joibedTable: 'm_income2',
+                where: []
             });
         });
 
@@ -41,20 +52,19 @@ define([
                 targetTable: 'posts',
                 innerjoin: 'join',
                 joibedTable: 'users',
-                where: {
-                    firstRule: {
+                where: [
+                    {
                         method: 'on',
-                        sign: '=',
                         firstJoinField: 'posts.userid',
+                        sign: '=',
                         secondJoinField: 'users.id'
-                    },
-                    secondRule: {
+                    },{
                         method: 'where',
                         sign: '<=',
                         firstJoinField: 'users.id2',
                         secondJoinField: '2'
                     }
-                }
+                ]
             });
         });
     });
