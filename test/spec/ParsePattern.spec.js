@@ -1,7 +1,7 @@
-define([
-    '../../src/app/SQL_Engine/ParsePattern'
-], function ( Pattern ) {
+define(function ( require) {
     "use strict";
+
+    var Pattern = require('../../src/app/SQL_Engine/ParsePattern');
 
     describe('Pattern', function () {
 
@@ -34,7 +34,7 @@ define([
             });
         });
 
-        it('Should be return undefined if take undefined ', function () {
+        it('Should return undefined if take undefined ', function () {
             var text = new Pattern(
                 function(str, pos) {
                     return undefined;

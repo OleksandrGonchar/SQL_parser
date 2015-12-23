@@ -1,7 +1,7 @@
-define([
-        'src/app/SQL_Engine/ParsePattern'
-    ], function(Pattern) {
+define(function(require) {
     "use strict";
+
+        var Pattern = require('src/app/SQL_Engine/ParsePattern');
 
         return {
             //text method
@@ -48,7 +48,8 @@ define([
                     }
                 });
             },
-            seq: function ( patterns ) {
+            seq: function (  ) {
+                var patterns = Array.prototype.slice.call(arguments);
                 return new Pattern(function ( str, pos ) {
                     //pos = pos || 0;
                     var i, response, end = pos, responseArray = [];

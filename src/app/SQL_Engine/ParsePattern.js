@@ -1,6 +1,4 @@
-define([
-        ''
-    ], function() {
+define(function( require ) {
     "use strict";
 
     var ParsePattern = function (execFn) {

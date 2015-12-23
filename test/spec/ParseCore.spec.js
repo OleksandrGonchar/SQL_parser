@@ -1,7 +1,7 @@
-define([
-    '../../src/app/SQL_Engine/ParseCore'
-], function ( Patterns ) {
+define(function ( require ) {
     "use strict";
+
+    var Patterns = require('../../src/app/SQL_Engine/ParseCore');
 
     describe('Patterns ParseCore', function () {
 
@@ -102,7 +102,7 @@ define([
         });
 
         describe('seq', function () {
-            var p = Patterns.seq([Patterns.txt("abc"), Patterns.txt("def")]);
+            var p = Patterns.seq(Patterns.txt("abc"), Patterns.txt("def"));
 
             it('Should be defined', function () {
                 expect(Patterns.seq).toBeDefined();
