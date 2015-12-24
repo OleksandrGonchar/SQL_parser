@@ -1,15 +1,15 @@
-define(function( require ) {
+define(function (require) {
     "use strict";
 
     var ParsePattern = function (execFn) {
         this.exec = execFn;
     };
     ParsePattern.prototype = {
-        constructor : ParsePattern,
+        constructor: ParsePattern,
 
-        than : function (trabsformFn) {
+        than: function (trabsformFn) {
             var exec = this.exec;
-            return new ParsePattern(function(str, pos){
+            return new ParsePattern(function (str, pos) {
                 var result;
                 result = exec(str, pos || 0);
 

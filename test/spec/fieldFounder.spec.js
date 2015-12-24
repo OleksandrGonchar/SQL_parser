@@ -1,4 +1,4 @@
-define(function ( require ) {
+define(function (require) {
     "use strict";
 
     var fieldFounder = require('../../src/app/SQL_Engine/SQL_Parser/fieldFounder');

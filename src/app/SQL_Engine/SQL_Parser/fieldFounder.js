@@ -1,4 +1,4 @@
-define(function( require ) {
+define(function (require) {
     "use strict";
 
     var Patterns = require('src/app/SQL_Engine/ParseCore');

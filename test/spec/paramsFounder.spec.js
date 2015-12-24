@@ -3,7 +3,7 @@ define(function (require) {
 
     var paramsFounder = require('../../src/app/SQL_Engine/SQL_Parser/paramsFounder');
 
-    describe('SQL Engine', function() {
+    describe('SQL Engine', function () {
 
         describe('paramsFounder', function () {
 

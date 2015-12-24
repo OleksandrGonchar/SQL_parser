@@ -1,4 +1,4 @@
-define(function ( require ) {
+define(function (require) {
     "use strict";
 
     var Patterns = require('../../src/app/SQL_Engine/ParseCore');
@@ -53,7 +53,7 @@ define(function ( require ) {
         });
 
         describe('opt', function () {
-            var select = Patterns.txt( 'SELECT' );
+            var select = Patterns.txt('SELECT');
             var optSelect = Patterns.opt(select);
 
             it('Should be defined', function () {
@@ -61,14 +61,14 @@ define(function ( require ) {
             });
 
             it('Should be fined in string', function () {
-                expect(optSelect.exec( 'SELECT * FROM', 0)).toEqual({
+                expect(optSelect.exec('SELECT * FROM', 0)).toEqual({
                     res: 'SELECT',
                     end: 6
                 });
             });
 
             it('Should return undefined if not selected', function () {
-                expect(optSelect.exec( 'SLCT * FROM', 0)).toEqual({
+                expect(optSelect.exec('SLCT * FROM', 0)).toEqual({
                     res: undefined,
                     end: 0
                 });
