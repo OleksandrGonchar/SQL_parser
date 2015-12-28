@@ -3,3 +3,7 @@ node_modules
 .idea
 Capture
 bower_components
+build
+id_rsa
+id_rsa.pub
+optional .json

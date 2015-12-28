@@ -1,8 +1,8 @@
 define(function (require) {
     "use strict";
 
-    var Patterns = require('src/app/SQL_Engine/ParseCore'),
-        fieldFounder = require('src/app/SQL_Engine/SQL_Parser/fieldFounder');
+    var Patterns = require('source/app/SQL_Engine/ParseCore'),
+        fieldFounder = require('source/app/SQL_Engine/SQL_Parser/fieldFounder');
 
     function paramsFounder(arrayParams, string, end) {
         var firstJoinCriterial, firstJoinField, sign, secondJoinField,

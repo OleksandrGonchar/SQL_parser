@@ -1,7 +1,7 @@
 define(function ( require ) {
     "use strict";
 
-    var tableFounder = require('../../src/app/SQL_Engine/SQL_Parser/tableFounder');
+    var tableFounder = require('../../source/app/SQL_Engine/SQL_Parser/tableFounder');
 
     describe('SQL Engine', function () {
         var targetString1 = ' m_income1 m_income2 ',

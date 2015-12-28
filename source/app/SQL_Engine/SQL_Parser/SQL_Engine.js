@@ -1,12 +1,12 @@
 define(function (require) {
     "use strict";
 
-    var Patterns = require('src/app/SQL_Engine/ParseCore'),
-        innerjoinFounder = require('src/app/SQL_Engine/SQL_Parser/innerjoinFounder'),
-        operatorFounder = require('src/app/SQL_Engine/SQL_Parser/operatorFounder'),
-        fieldFounder = require('src/app/SQL_Engine/SQL_Parser/fieldFounder'),
-        tableFounder = require('src/app/SQL_Engine/SQL_Parser/tableFounder'),
-        paramsFounder = require('src/app/SQL_Engine/SQL_Parser/paramsFounder');
+    var Patterns = require('source/app/SQL_Engine/ParseCore'),
+        innerjoinFounder = require('source/app/SQL_Engine/SQL_Parser/innerjoinFounder'),
+        operatorFounder = require('source/app/SQL_Engine/SQL_Parser/operatorFounder'),
+        fieldFounder = require('source/app/SQL_Engine/SQL_Parser/fieldFounder'),
+        tableFounder = require('source/app/SQL_Engine/SQL_Parser/tableFounder'),
+        paramsFounder = require('source/app/SQL_Engine/SQL_Parser/paramsFounder');
 
     return function (string) {
 

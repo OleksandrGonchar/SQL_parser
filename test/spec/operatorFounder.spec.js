@@ -1,7 +1,7 @@
 define(function (require) {
     "use strict";
 
-    var operatorFounder = require('../../src/app/SQL_Engine/SQL_Parser/operatorFounder');
+    var operatorFounder = require('../../source/app/SQL_Engine/SQL_Parser/operatorFounder');
 
     describe('SQL Engine', function () {
 
