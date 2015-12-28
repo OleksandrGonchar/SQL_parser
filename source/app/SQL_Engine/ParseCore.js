@@ -1,7 +1,5 @@
-define(function (require) {
+define(['source/app/SQL_Engine/ParsePattern'], function (Pattern) {
     "use strict";
-
-    var Pattern = require('source/app/SQL_Engine/ParsePattern');
 
     return {
         //text method

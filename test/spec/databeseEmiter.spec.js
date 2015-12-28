@@ -4,6 +4,7 @@ define(function (require) {
     var fakeUserTable, fakePostTable;
     var sqlQuery1 = "select text from fakePostTable";
     var sqlQuery2 = "select text from fakePostTable where id >= 3";
+    var sqlQuery3 = "select text , firstName  from fakePostTable inner join fakeUserTable where id = userId";
     var dbName = "fakedb";
     var databaseEmitter = require('../../source/app/SQL_Engine/database/databaseEmitter');
 
@@ -50,7 +51,6 @@ define(function (require) {
                 fakePostTable: fakePostTable,
                 fakeUserTable: fakeUserTable
             }));
-            //console.log("End test",localStorage.getItem(dbName));
         }));
 
         it('Should be defined', function () {
@@ -68,6 +68,18 @@ define(function (require) {
         it('Should return table with parameters', function () {
             expect(databaseEmitter(sqlQuery2)).toEqual([
                 {text: "BANANA"}
+            ]);
+        });
+
+        it('Should return table with parameters', function () {
+            expect(databaseEmitter(sqlQuery3)).toEqual([
+                {
+                    text: 'Hello...',
+                    firstName: 'John'
+                },{
+                    text: "BANANA",
+                    firstName: "King"
+                }
             ]);
         });
     });

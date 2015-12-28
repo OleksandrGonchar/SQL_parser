@@ -48,7 +48,7 @@ gulp.task('minify', ["lib"], function () {
 gulp.task('lib', function () {
     gulp.src('bower_components/**/*.js')
         .pipe(uglify())
-        .pipe(gulp.dest('build/lib'))
+        .pipe(gulp.dest('build/app/lib'))
 });
 
 // The default task is 'watch'
