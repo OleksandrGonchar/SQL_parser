@@ -3,7 +3,6 @@ define([
     'lib/lodash/lodash'
 ], function (database, lodash) {
     "use strict";
-    console.log(database);
 
     function aplication() {
 
