@@ -1,11 +1,14 @@
-define(['SQL_Engine/database/databaseEmitter',
+define([
+    'SQL_Engine/database/databaseEmitter',
     'lib/lodash/lodash'
-], function (app, lodash) {
+], function (database, lodash) {
     "use strict";
+    console.log(database);
 
-    function deed() {
+    function aplication() {
 
     }
 
-    return deed;
+    //output
+    return aplication;
 });

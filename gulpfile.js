@@ -46,7 +46,7 @@ gulp.task('minify', ["lib"], function () {
 
 //minification move js libraries to build folder and minification them
 gulp.task('lib', function () {
-    gulp.src('bower_components/**/*.js')
+    gulp.src(['bower_components/**/*min.js','bower_components/requirejs/**/*.js'])
         .pipe(uglify())
         .pipe(gulp.dest('build/app/lib'))
 });

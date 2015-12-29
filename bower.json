@@ -3,7 +3,8 @@
   "private": false,
   "dependencies": {
     "lodash": "~3.10.1",
-    "requirejs": "~2.1.22"
+    "requirejs": "~2.1.22",
+    "jquery": "~2.1.4"
   },
   "overrides": {
     "bootstrap-sass": {
