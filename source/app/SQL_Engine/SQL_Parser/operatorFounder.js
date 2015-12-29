@@ -1,7 +1,7 @@
-define(function (require) {
+define([
+    'source/app/SQL_Engine/ParseCore'
+], function (Patterns) {
     "use strict";
-
-    var Patterns = require('source/app/SQL_Engine/ParseCore');
 
     function operatorFounder(string, end) {
         string = string.trim();

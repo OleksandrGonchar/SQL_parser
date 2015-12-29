@@ -1,11 +1,12 @@
-define(function (require) {
+define([
+    'source/app/SQL_Engine/ParseCore'
+], function (Patterns) {
     "use strict";
-
-    var Patterns = require('source/app/SQL_Engine/ParseCore');
 
     function tableFounder(string, end) {
         return Patterns.rgx(/[\s]*[\w|\*]+[\s]*/).exec(string, end);
     }
 
+    //output
     return tableFounder;
 });

@@ -1,7 +1,8 @@
-define(function (require) {
+define([
+    'source/app/SQL_Engine/ParseCore'
+], function (Patterns) {
     "use strict";
 
-    var Patterns = require('source/app/SQL_Engine/ParseCore');
 
     function fieldFounder(str, end) {
         return Patterns.rep(

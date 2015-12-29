@@ -1,4 +1,6 @@
-define(['source/app/SQL_Engine/ParsePattern'], function (Pattern) {
+define([
+    'source/app/SQL_Engine/ParsePattern'
+], function (Pattern) {
     "use strict";
 
     return {

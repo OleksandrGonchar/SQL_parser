@@ -20,5 +20,7 @@ define(function (require) {
             })
         }
     };
+
+    //output
     return ParsePattern;
 });

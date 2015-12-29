@@ -3,17 +3,15 @@ define(function (require) {
 
     var fakeUserTable, fakePostTable;
     var sqlQuery1 = "select text from fakePostTable";
-    var sqlQuery2 = "select text,userId from fakePostTable where id >= 3";
+    var sqlQuery2 = "select text,userId from fakePostTable";
     var sqlQuery3 = "select text from fakePostTable where id >= 3";
-    var sqlQuery4 = "select text , firstName  from fakePostTable inner join fakeUserTable where id = userId";
+    var sqlQuery4 = "select firstName ,text  from fakeUserTable inner join fakePostTable  where id = userId";
     var dbName = "fakedb";
     var databaseEmitter = require('../../source/app/SQL_Engine/database/databaseEmitter');
 
     describe('databaseEmitter', function () {
         beforeEach((function () {
-            //console.log("Begin test",localStorage.getItem(dbName));
             localStorage.removeItem(dbName);
-            //console.log("After remove item",localStorage.getItem(dbName));
             fakeUserTable = [
                 {
                     id: 1,
@@ -40,7 +38,7 @@ define(function (require) {
                 }, {
                     id: 2,
                     text: "I have t...",
-                    userId: 1
+                    userId: 4
                 }, {
                     id: 3,
                     text: "BANANA",
@@ -70,11 +68,11 @@ define(function (require) {
             expect(databaseEmitter(sqlQuery2)).toEqual([
                 {
                     text: "Hello...",
-                    userId:1
-                },{
-                    text: "I have t...",
                     userId: 1
-                },{
+                }, {
+                    text: "I have t...",
+                    userId: 4
+                }, {
                     text: "BANANA",
                     userId: 3
                 }
@@ -87,14 +85,14 @@ define(function (require) {
             ]);
         });
 
-        xit('Should return table with parameters', function () {
+        it('Should return table with parameters', function () {
             expect(databaseEmitter(sqlQuery4)).toEqual([
                 {
-                    text: 'Hello...',
-                    firstName: 'John'
-                },{
-                    text: "BANANA",
-                    firstName: "King"
+                    firstName: 'John',
+                    text: 'Hello...'
+                }, {
+                    firstName: 'King',
+                    text: 'BANANA'
                 }
             ]);
         });
