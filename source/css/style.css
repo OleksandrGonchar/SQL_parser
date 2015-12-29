@@ -1,6 +1,20 @@
+* {
+    box-sizing: border-box;
+}
 .wrapper {
-    height: 100px;
-    background: red;
+    background: #eee;
     width: 300px;
+    padding: 20px;
     margin: 0 auto;
+    overflow: visible;
+}
+.search-wield {
+    padding: 10px;
+    margin: 0 0 10px;
+    width: 100%;
+}
+.button {
+    width: 40%;
+    padding: 10px;
+    margin: 10px;
 }
