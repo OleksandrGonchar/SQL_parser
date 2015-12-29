@@ -32,52 +32,35 @@ define([
     }
 
     function databaseEmitter(query) {
-        var database = JSON.parse(localStorage.getItem("fakedb"));
-        var queryParser = sqlparser(query);
+        var rowObject;
         var ansver = [];
-        for (var i = 0, responceObj,
-                 field = queryParser.targetField,
-                 join = queryParser.innerjoin,
-                 where = queryParser.where;
-             i < database[queryParser.targetTable].length; i++) {
-            responceObj = {};
-            if (where.length > 0) {
-                for (var k = 0; k < where.length; k++) {
-                    if (join) {
-                        for (var j = 0; j < field.length; j++) {
-                            if (parseCriterial(
-                                    ((database[queryParser.targetTable])[i])[where[k].secondJoinField],
-                                    ((database[queryParser.targetTable])[i])[where[k].firstJoinField],
-                                    where[k].sign
-                                )) {
-                                if (((database[queryParser.targetTable])[i])[field[j]]) {
-                                    responceObj[field[j]] = ((database[queryParser.targetTable])[i])[field[j]];
-                                    ansver.push(responceObj);
-                                } else {
-                                    if (((database[queryParser.joibedTable])[i])[field[j]]) {
-                                        responceObj[field[j]] = ((database[queryParser.joibedTable])[i])[field[j]];
-                                    }
-                                }
+        var database = JSON.parse(localStorage.getItem('fakedb'));
+        var sqlQuery = sqlparser(query);
+        if (!sqlQuery.innerjoin) {
+            for (var i = 0, curentTable = database[sqlQuery.targetTable]; i < curentTable.length; i++) {
+                rowObject = {};
+                for (var k = 0, curentField = sqlQuery.targetField; k < curentField.length; k++) {
+                    console.log(curentField[k]);
+                    if (sqlQuery.where.length > 0) {
+                        console.log(sqlQuery.where.length > 0);
+                        for (var e = 0, checkedField1, checkedField2; e < sqlQuery.where.length; e++) {
+                            checkedField1 = +sqlQuery.where[e].firstJoinField || (curentTable[i])[sqlQuery.where[e].firstJoinField];
+                            checkedField2 = +sqlQuery.where[e].secondJoinField || (database[sqlQuery.joibedTable])[sqlQuery.where[e].secondJoinField];
+                            if (parseCriterial(checkedField1, checkedField2, sqlQuery.where[e].sign)) {
+                                console.log(checkedField1);
+                                console.log(checkedField2);
+
                             }
                         }
                     } else {
-                        if (parseCriterial(
-                                ((database[queryParser.targetTable])[i])[where[k].firstJoinField],
-                                where[k].secondJoinField,
-                                where[k].sign
-                            )) {
-                            for (var e = 0; e < field.length; e++) {
-                                responceObj[field[e]] = ((database[queryParser.targetTable])[i])[field[e]];
-                                ansver.push(responceObj);
-                            }
-                        }
+                        rowObject[curentField[k]] = (curentTable[i])[curentField[k]];
                     }
                 }
-            } else {
-                responceObj[field] = ((database[queryParser.targetTable])[i])[field];
-                ansver.push(responceObj);
+                console.log(rowObject);
+                ansver.push(rowObject);
             }
         }
+        console.log(JSON.stringify(sqlQuery));
 
         return ansver;
     }

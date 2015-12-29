@@ -3,8 +3,9 @@ define(function (require) {
 
     var fakeUserTable, fakePostTable;
     var sqlQuery1 = "select text from fakePostTable";
-    var sqlQuery2 = "select text from fakePostTable where id >= 3";
-    var sqlQuery3 = "select text , firstName  from fakePostTable inner join fakeUserTable where id = userId";
+    var sqlQuery2 = "select text,userId from fakePostTable where id >= 3";
+    var sqlQuery3 = "select text from fakePostTable where id >= 3";
+    var sqlQuery4 = "select text , firstName  from fakePostTable inner join fakeUserTable where id = userId";
     var dbName = "fakedb";
     var databaseEmitter = require('../../source/app/SQL_Engine/database/databaseEmitter');
 
@@ -57,7 +58,7 @@ define(function (require) {
             expect(databaseEmitter).toBeDefined();
         });
 
-        it('Should return table', function () {
+        it('Should return table with 3 rows and one field', function () {
             expect(databaseEmitter(sqlQuery1)).toEqual([
                 {text: "Hello..."},
                 {text: "I have t..."},
@@ -65,14 +66,29 @@ define(function (require) {
             ]);
         });
 
-        it('Should return table with parameters', function () {
+        it('Should return table with 3 rows and two field', function () {
             expect(databaseEmitter(sqlQuery2)).toEqual([
-                {text: "BANANA"}
+                {
+                    text: "Hello...",
+                    userId:1
+                },{
+                    text: "I have t...",
+                    userId: 1
+                },{
+                    text: "BANANA",
+                    userId: 3
+                }
             ]);
         });
 
         it('Should return table with parameters', function () {
             expect(databaseEmitter(sqlQuery3)).toEqual([
+                {text: "BANANA"}
+            ]);
+        });
+
+        xit('Should return table with parameters', function () {
+            expect(databaseEmitter(sqlQuery4)).toEqual([
                 {
                     text: 'Hello...',
                     firstName: 'John'
