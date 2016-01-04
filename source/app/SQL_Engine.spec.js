@@ -1,7 +1,7 @@
 define(function ( require ) {
     "use strict";
 
-    var SELECT = require('../../source/app/SQL_Engine/SQL_Parser/SQL_Engine');
+    var SELECT = require('SQL_Engine');
 
     describe('SQL Engine', function() {
 

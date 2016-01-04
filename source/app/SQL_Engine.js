@@ -1,10 +1,10 @@
 define([
-    'source/app/SQL_Engine/ParseCore',
-    'source/app/SQL_Engine/SQL_Parser/innerjoinFounder',
-    'source/app/SQL_Engine/SQL_Parser/operatorFounder',
-    'source/app/SQL_Engine/SQL_Parser/fieldFounder',
-    'source/app/SQL_Engine/SQL_Parser/tableFounder',
-    'source/app/SQL_Engine/SQL_Parser/paramsFounder'
+    'ParseCore',
+    'innerjoinFounder',
+    'operatorFounder',
+    'fieldFounder',
+    'tableFounder',
+    'paramsFounder'
 ],function (Patterns, innerjoinFounder, operatorFounder, fieldFounder,tableFounder, paramsFounder) {
     "use strict";
 

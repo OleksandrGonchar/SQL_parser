@@ -1,7 +1,7 @@
 define(function ( require ) {
     "use strict";
 
-    var innerjoinFounder = require('../../source/app/SQL_Engine/SQL_Parser/innerjoinFounder');
+    var innerjoinFounder = require('innerjoinFounder');
 
     describe('SQL Engine', function () {
 

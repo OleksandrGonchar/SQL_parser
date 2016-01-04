@@ -6,8 +6,7 @@ define(function (require) {
     var sqlQuery2 = "select text,userId from fakePostTable";
     var sqlQuery3 = "select text from fakePostTable where id >= 3";
     var sqlQuery4 = "select firstName ,text  from fakeUserTable inner join fakePostTable  where id = userId";
-    var dbName = "fakedb";
-    var databaseEmitter = require("../../source/app/SQL_Engine/database/databaseEmitter");
+    var databaseEmitter = require("databaseEmitter");
     describe('databaseEmitter', function () {
         beforeEach((function () {
             localStorage.removeItem(dbName);

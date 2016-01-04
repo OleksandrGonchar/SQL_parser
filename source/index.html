@@ -4,10 +4,17 @@
     <meta charset="UTF-8">
     <title>SQL Parser</title>
     <link rel="stylesheet" href="css/style.css">
+    <script>
+        //this code generate fake db in local storage
+        var dbName = "fakedb";var fakeUserTable,fakePostTable;localStorage.removeItem(dbName),fakeUserTable=[{id:1,firstName:"John",lastName:"Doe",login:"jdoe"},{id:2,firstName:"Jane",lastName:"Doe",login:"jadoe"},{id:3,firstName:"King",lastName:"Kong",login:"kk"}],fakePostTable=[{id:1,text:"Hello...",userId:1},{id:2,text:"I have t...",userId:4},{id:3,text:"BANANA",userId:3}],localStorage.setItem(dbName,JSON.stringify({fakePostTable:fakePostTable,fakeUserTable:fakeUserTable}));
+    </script>
 </head>
 <body>
 <!-- begin wrapper -->
 <div class="wrapper">
+    <p>
+        select text from fakePostTable
+    </p>
     <form id="searchForm" name="searchForm">
         <input class="search-wield" id="searchField" name="searchField" type="text" placeholder="Enter your query...">
         <input class="button" type="button" value="SELECT" id="select">
@@ -17,6 +24,34 @@
     </form>
 </div>
 <!-- end wrapper -->
+
+        <!--Template-->
+        <!--
+            <%= key %> - выводим значение "как есть"
+            <%- item.name %> - экранируем значение
+        -->
+
+        <script type="foo/bar" id='tmpl_ListItem'>
+        <%
+            // repeat items
+            _.each(items,function(oToDo, key, list){
+
+                var sDone = oToDo.done?'checked="checked" ':'';
+        %>
+        <li data-id="<%= oToDo.id %>">
+                <div class="itm">
+                    <input class="cbDone" type="checkbox" <%= sDone %>/>
+
+                    <input class="form-control" type="text" value="<%- oToDo.text %>" />
+                </div>
+        </li>
+        <%
+            });
+        %>
+        </script>
+        <!--Template-->
+
+
 <!-- Script -->
 <script data-main="app/app" src="app/lib/require.js"></script>
 </body>

@@ -1,6 +1,6 @@
 define([
-    'source/app/SQL_Engine/ParseCore',
-    'source/app/SQL_Engine/SQL_Parser/fieldFounder'
+    'ParseCore',
+    'fieldFounder'
 ], function (Patterns, fieldFounder) {
     "use strict";
 

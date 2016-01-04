@@ -1,5 +1,5 @@
 define([
-    '../SQL_Parser/SQL_Engine'
+    'SQL_Engine'
 ], function (sqlparser) {
     "use strict";
 

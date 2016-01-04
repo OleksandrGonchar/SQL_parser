@@ -1,5 +1,5 @@
 define([
-    'source/app/SQL_Engine/ParsePattern'
+    'ParsePattern'
 ], function (Pattern) {
     "use strict";
 

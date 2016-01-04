@@ -1,5 +1,5 @@
 define([
-    'source/app/SQL_Engine/ParseCore'
+    'ParseCore'
 ], function (Patterns) {
     "use strict";
 

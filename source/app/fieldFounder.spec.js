@@ -1,7 +1,7 @@
 define(function (require) {
     "use strict";
 
-    var fieldFounder = require('../../source/app/SQL_Engine/SQL_Parser/fieldFounder');
+    var fieldFounder = require('fieldFounder');
 
     describe('SQL Engine', function () {
 
