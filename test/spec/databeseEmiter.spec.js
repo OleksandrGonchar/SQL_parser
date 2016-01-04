@@ -7,8 +7,7 @@ define(function (require) {
     var sqlQuery3 = "select text from fakePostTable where id >= 3";
     var sqlQuery4 = "select firstName ,text  from fakeUserTable inner join fakePostTable  where id = userId";
     var dbName = "fakedb";
-    //var databaseEmitter = require("../../source/app/SQL_Engine/database/databaseEmitter");
-    //in one magic moment require don`t work
+    var databaseEmitter = require("../../source/app/SQL_Engine/database/databaseEmitter");
     describe('databaseEmitter', function () {
         beforeEach((function () {
             localStorage.removeItem(dbName);
@@ -52,11 +51,11 @@ define(function (require) {
             }));
         }));
 
-        xit('Should be defined', function () {
+        it('Should be defined', function () {
             expect(databaseEmitter).toBeDefined();
         });
 
-        xit('Should return table with 3 rows and one field', function () {
+        it('Should return table with 3 rows and one field', function () {
             expect(databaseEmitter(sqlQuery1)).toEqual([
                 {text: "Hello..."},
                 {text: "I have t..."},
@@ -64,7 +63,7 @@ define(function (require) {
             ]);
         });
 
-        xit('Should return table with 3 rows and two field', function () {
+        it('Should return table with 3 rows and two field', function () {
             expect(databaseEmitter(sqlQuery2)).toEqual([
                 {
                     text: "Hello...",
@@ -79,13 +78,13 @@ define(function (require) {
             ]);
         });
 
-        xit('Should return table with parameters', function () {
+        it('Should return table with parameters', function () {
             expect(databaseEmitter(sqlQuery3)).toEqual([
                 {text: "BANANA"}
             ]);
         });
 
-        xit('Should return table with parameters', function () {
+        it('Should return table with parameters', function () {
             expect(databaseEmitter(sqlQuery4)).toEqual([
                 {
                     firstName: 'John',
